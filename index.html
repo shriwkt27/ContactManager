@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+
+body {
+	background-image: url("http://doolyk.com/wps/wcm/connect/doolyk/6ef09667-d99b-418e-9137-5c2e8929956c/Doolyk_Header_Contatti.jpg%3FMOD=AJPERES&CACHEID=6ef09667-d99b-418e-9137-5c2e8929956c");
+}
+
+h1 {
+    background-color:#ECF3F3;
+}
+
+input[type=text], input[type=email], input[type=number],select {
+    padding: 11px 19px;
+    margin: 7px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 13px 19px;
+    margin: 7px 0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+div {
+    border-radius: 4px;
+    background-color: powderblue;
+    padding: 19px;
+}
+
+</style>
+
+  <body>
+  <h1>Contact Manager</h1>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="Contact.js"></script>	
+  
+	  <div ng-app="app" ng-controller="ContactController">
+	      <div align="center">
+		  <form>
+			<label for="fname">First Name</label>
+    		<input type="text" id="fname" name="firstname" ng-model="contact.firstname" placeholder="Your name.." ><br>
+    		<label for="lname">Last Name</label>
+    		<input type="text" id="lname" name="lastname" ng-model="contact.lastname" placeholder="Your last name.."><br>
+			<label for="email">Email Addr</label>
+    		<input type="email" id="email" name="email" ng-model="contact.email" placeholder="Your email.."><br>
+			<label for="phone">Phone Num</label>
+    		<input type="number" id="phone" name="phone" ng-model="contact.phone" placeholder="Your phone number.."><br>
+			<label for="status">Status</label>
+  			<select id="status" name="status" ng-model="contact.status">
+  			<option value="" selected="selected">Choose here</option>
+  			<option value="Active">Active</option>
+      		<option value="Inactive">Inactive</option>
+    		</select><br>
+			<input type="hidden" ng-model="contact.id" />
+			<input type="button" value="Add/Edit" ng-click="addContact()" class="btn btn-primary" />
+		  </form>
+		  </div>
+
+
+	<p style="text-align:center;font-weight:bold;">List Contacts: <input type="checkbox" ng-model="listcontacts"> </p>
+		<div ng-show="listcontacts">
+		  <table class="table table-striped table-bordered">
+			  <thead>
+				  <tr>
+					  <th>FirstName</th>
+					  <th>LastName</th>
+					  <th>Email</th>
+					  <th>Phone</th>
+					  <th>Status</th>
+					  <th>Action</th>
+				  </tr>
+			  </thead>
+			  <tbody>
+				  <tr ng-repeat="tablecontact in contacts">
+					  <td>{{ tablecontact.firstname }}</td>
+					  <td>{{ tablecontact.lastname }}</td>
+					  <td>{{ tablecontact.email }}</td>
+					  <td>{{ tablecontact.phone }}</td>
+					  <td>{{ tablecontact.status }}</td>
+					  <td> <a href="" ng-click="edit(tablecontact.id)">Edit</a> | <a href="" ng-click="delete(tablecontact.id)">Delete</a>
+						  
+					  </td>
+				  </tr>
+			  </tbody>
+		  </table>
+		  </div>
+	  </div>
+
+<script>
+
+</script>	
+</body>
+</html>
